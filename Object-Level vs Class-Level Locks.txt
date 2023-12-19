@@ -1,0 +1,6 @@
+Choosing Between Object-Level and Class-Level Locks:
+Object-level locks are useful when you want to synchronize access to instance-specific data or methods. Each instance has its own lock, 
+so methods can be executed concurrently on different instances.
+
+Class-level locks are useful when you want to synchronize access to class-level data or methods. They are associated with the class itself, 
+so only one thread can execute a class-level synchronized method across all instances of the class.

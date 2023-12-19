@@ -1,0 +1,11 @@
+1. Movie/Train/Bus/Airline Ticket Booking (Done)
+2. Cab(Ola/Uber) Booking  (Done)
+3. E-commerce shopping design (Done)
+4. StackOverflow (Done)
+5. Design logging (Done)
+6. Parking lot
+7. Car rental
+8. Splitwise
+9. Cache
+
+
