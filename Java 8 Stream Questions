@@ -1,0 +1,200 @@
+
+
+        //a super class reference should be replaced with any of the sub class
+
+//        DesignerInt eng= new Designer();
+//        System.out.println(eng.designerMethod().length());
+
+        String str = "abcsdnvsd";
+//        char[] charArray = str.toCharArray();
+        Stream<Character> stream = str.chars().mapToObj(c -> (char) c);
+
+        Map<Person, Integer> hm= new HashMap<>();
+
+        Person p1= new Person("1", "Kanishk");
+        Person p2= new Person("2", "Ankur");
+        List<Person> list=new ArrayList<>();
+        list.add(p1);
+        list.add(p2);
+        Comparator<Person> comparing = Comparator.comparing(Person::getName).thenComparing(Person::getId);
+        Collections.sort(list,comparing);
+        for (Person p: list) {
+            System.out.println(p);
+        }
+
+        /*
+
+
+----Note:---
+1. mapToObj(e-> (char)e)  => mapToObj() is used to convert IntStream/CharStream/LongStream to Stream<T> ; T = Integer, Long, Character
+2. If Arrays.stream() applies of primitive array then it will return IntStream, LongStream, DoubleStream, but it didn't work for char
+                    and if applied on any class array(String[], Employee[]) then it will return Stream<String>, Stream<Employee>
+3. 1. int[] a= {1,2,3,4};
+      IntStream stream1 = Arrays.stream(a);
+   2. char[] c= {'a','b'};
+      IntStream chars = c.toString().chars();
+
+
+        //Question 1: Given a list of integers, separate odd and even numbers?
+
+        List<Integer> listOfIntegers = Arrays.asList(71, 18, 42, 21, 67, 32, 95, 14, 56, 87);
+        Map<Boolean, List<Integer>> seperateOddEven = listOfIntegers.stream().collect(Collectors.partitioningBy(e -> e % 2 == 0));
+        for (Map.Entry<Boolean, List<Integer>> entry : seperateOddEven.entrySet()){
+            if(entry.getKey().equals(true)){
+                List<Integer> even = entry.getValue();
+                for (int i : even) {
+                    System.out.println(i);
+                }
+            }else{
+                    List<Integer> odd = entry.getValue();
+                    for (int i : odd) {
+                        System.out.println(i);
+                    }
+            }
+        }
+
+
+        //Question 2: How do you remove duplicate elements from a list using Java 8 streams?
+        List<String> listOfStrings = Arrays.asList("Java", "Python", "C#", "Java", "Kotlin", "Python");
+        List<String> distinct = listOfStrings.stream().distinct().collect(Collectors.toList());
+        for (String str1 : distinct){
+            System.out.println(str1);
+        }
+//        Map<String, Long> collect = listOfStrings.stream().collect(Collectors.groupingBy(s -> s, Collectors.counting()));
+        Map<String, Long> collect = listOfStrings.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+//        collect.entrySet().forEach(e-> System.out.println(e.getKey()));
+
+
+        //Question 3: How do you find frequency of each character in a string using Java 8 streams?
+        String inputString = "Java Concept Of The Day";
+        IntStream chars = inputString.chars();
+        Stream<Character> streamChar = chars.mapToObj(ch -> (char) ch);
+//        Map<Character, Long> charFreq = streamChar.collect(Collectors.groupingBy(ch -> ch, Collectors.counting()));
+        Map<Character, Long> charFreq = streamChar.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        charFreq.entrySet().forEach(e-> System.out.println(e.getKey()+ " "+ e.getValue()));
+
+
+
+        //Question 4: How do you find frequency of each element in an array or a list?
+        List<String> stationeryList = Arrays.asList("Pen", "Eraser", "Note Book", "Pen", "Pencil", "Stapler", "Note Book", "Pencil");
+        Map<String, Long> stationeryCountMap =
+                stationeryList.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        System.out.println(stationeryCountMap);
+
+
+        //Question5: How do you sort the given list of decimals in reverse order?
+        List<Double> decimalList = Arrays.asList(12.45, 23.58, 17.13, 42.89, 33.78, 71.85, 56.98, 21.12);
+        List<Double> reverseSorted = decimalList.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+
+
+//        Question 6: Given a list of strings, join the strings with ‘[‘ as prefix, ‘]’ as suffix and ‘,’ as delimiter?
+        List<String> listOfStrings = Arrays.asList("Facebook", "Twitter", "YouTube", "WhatsApp", "LinkedIn");
+
+        String joinString = listOfStrings.stream().collect(Collectors.joining(",", "[", "]"));
+        System.out.println(joinString);
+
+
+        // Question 7: Given a list of integers, find maximum and minimum of those numbers?
+        List<Integer> listOfIntegers = Arrays.asList(45, 12, 56, 15, 24, 75, 31, 89);
+        Optional<Integer> max = listOfIntegers.stream().max(Comparator.naturalOrder());
+        System.out.println(max.get());
+
+        Integer min = listOfIntegers.stream().min(Comparator.naturalOrder()).get();
+        System.out.println(min);
+
+
+        //Question 8: How do you merge two unsorted arrays into single sorted array using Java 8 streams?
+        int[] a = new int[] {4, 2, 7, 1};
+        int[] b = new int[] {8, 3, 9, 5};
+
+        List<Integer> mergedSorted = IntStream.concat(Arrays.stream(a), Arrays.stream(b)).mapToObj(e -> e).sorted().collect(Collectors.toList());
+        System.out.println(mergedSorted);
+
+
+        // Question 9: How do you merge two unsorted arrays into single sorted array without duplicates?
+        int[] a = new int[] {4, 2, 5, 1};
+
+        int[] b = new int[] {8, 1, 9, 5};
+
+        int[] sortedWithoutDup = IntStream.concat(Arrays.stream(a), Arrays.stream(b)).distinct().sorted().toArray();
+        System.out.println(Arrays.toString(sortedWithoutDup));
+
+
+        // Question 10: How do you get three maximum numbers and three minimum numbers from the given list of integers?
+
+        List<Integer> listOfIntegers = Arrays.asList(45, 12, 56, 15, 24, 75, 31, 89);
+
+        List<Integer> first3Min = listOfIntegers.stream().sorted(Comparator.naturalOrder()).limit(3).collect(Collectors.toList());
+
+        List<Integer> first3Max = listOfIntegers.stream().sorted(Comparator.reverseOrder()).limit(3).collect(Collectors.toList());
+
+        System.out.println(first3Min);
+        System.out.println(first3Max);
+
+
+        //Question 11: Java 8 program to check if two strings are anagrams or not?
+
+        String s1 = "RaceCar";
+        String s2 = "CarRace";
+
+//        Map<Character, Long> s1Freq = s1.chars().mapToObj(e -> (char) e).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+//        Map<Character, Long> s2Freq = s2.chars().mapToObj(e -> (char) e).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        //then iterate and check each key and value
+
+        String s1Sorted = Arrays.toString(s1.chars().mapToObj(e -> (char) e).sorted().toArray());
+        String s2Sorted = Arrays.toString(s2.chars().mapToObj(e -> (char) e).sorted().toArray());
+        System.out.println(s1Sorted+ " "+ s2Sorted);
+        if(s1Sorted.equals(s2Sorted)){
+            System.out.println("s1 & s2 are anagram");
+        }else{
+            System.out.println("s1 & s2 are not anagram");
+        }
+
+
+        // Question 12:  Find the second largest number in an integer array?
+
+        List<Integer> listOfIntegers = Arrays.asList(45, 12, 56, 15, 24, 75, 31, 89);
+        Optional<Integer> first = listOfIntegers.stream().sorted(Comparator.reverseOrder()).skip(1).findFirst();
+        System.out.println(first.get());
+
+
+        // Question 13: Given a list of strings, sort them according to increasing order of their length?
+
+        List<String> listOfStrings = Arrays.asList("Java", "Python", "C#", "HTML", "Kotlin", "C++", "COBOL", "C");
+
+        List<String> sortedStrings = listOfStrings.stream().
+                sorted(Comparator.comparing(String::length).thenComparing(Comparator.naturalOrder())).collect(Collectors.toList());
+        System.out.println(sortedStrings);
+
+
+        //Question 13: Given an integer array, find sum and average of all elements?
+
+        int[] a = new int[] {1, 2, 3, 4, 5};
+        Integer sum = Arrays.stream(a).mapToObj(e -> e).collect(Collectors.summingInt(e -> e));
+        Double average = Arrays.stream(a).mapToObj(e -> e).collect(Collectors.averagingInt(e -> e));
+        System.out.println(sum+ " "+ average);
+
+
+        //Question 14: How do you find common elements between two arrays?
+        List<Integer> list1 = Arrays.asList(71, 21, 34, 89, 56, 28);
+
+        List<Integer> list2 = Arrays.asList(12, 56, 17, 21, 94, 34);
+        List<Integer> commonElements = list1.stream().filter(e -> list2.contains(e)).collect(Collectors.toList());
+        System.out.println(commonElements);
+
+
+        //Question 15: Reverse each word of a string using Java 8 streams?
+
+        String words = "Java Concept Of The Day";
+
+        String reversedWords = Arrays.toString(Arrays.stream(words.split(" ")).map(s -> new StringBuilder(s).reverse()).toArray());
+        System.out.println(new StringBuilder(reversedWords.substring(1, reversedWords.length()-1)).reverse());
+
+
+         */
+
+        // Question 16: How do you find sum of first 10 natural numbers?
+
+        Integer sum = IntStream.range(1, 11).mapToObj(e -> (int) e).collect(Collectors.summingInt(e -> e));
+        System.out.println(sum);
+    
