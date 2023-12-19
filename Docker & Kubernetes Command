@@ -1,0 +1,65 @@
+Docker Command:-
+
+docker login -u {userName} -p {password}
+docker pull {imageName:tag}
+docker push {imageName:tag}
+docker image ls/ls-a
+docker ps/container ls/ls-a
+docker run -p {host port}:{container port} -d {imageName:tag}    //-d = detached mode
+docker container run -p {host port}:{container port} -d {imageName:tag}
+docker run -p {host port}:{container port} -d  --restart=Always {imageName:tag} // --restart=Always/no; Always mode is used to restart the containter everytime when docker starts, 
+																					  this is useful for DB service
+docker run -p {host port}:{container port} -d -m {memory usage specify} --cup-quota {cpu usage  specify {imageName:tag}
+docker container logs -f {imageId}
+																					  
+docker container stop {imageId/imageName} // stop gracefully
+docker container kill {imageId/imageName} // kill immediately
+docker container history {imageId/imageName}
+docker container inspect {imageId/imageName}																					 
+docker stats 				// show the statstitcs of cpu and memmory usage of each containers.
+docker search {imageName}  //search the image name like elastic search does.
+
+docker image remove 	// remove all unused images
+docker container prune // remove all stopped container
+
+docker build -t {imageName:tag} . 			// . specifies the Dockerfile in current directory
+
+
+--------------
+
+Kubernetes Command:-
+
+kubectl create deployment {deployment_name} --image={docker image name}
+kubectl expose deployment {deployment_name} --type=LoadBalancer --port=8000
+
+kubectl get pod/pods
+kubectl get replicaset/replicasets/rs
+kubectl get deployments
+kubectl get services/svc
+
+kubectl get pod/pods -o wide
+kubectl get svc --watch
+
+kubectl delete pod {pod_id}
+kubectl delete replicaset {replicaset_id}
+kubectl delete deployment {deployment_id}
+kubectl delete service {service_id}
+
+kubectl scale deployment {deployment_id} --replicaset=3
+kubectl autoscale deployment --min=2 --max=10 --cpu-percentage=70 //hpa(horizontal pod auto-scaling is happening)
+
+HPA(Horizontal pod auto-scaling) and VPA(Vertical pod auto-scaling)
+
+kubectl create deployment {deployment.yaml file}
+kubectl apply deployment {deployment.yaml file}
+kubectl create service {service.yaml file}
+kubectl create configmap {configMap.yaml file}
+
+kubectl log pod {pod_id}
+kubectl log -f pod {pod_id}
+
+For Zero downtime during deploying new version:
+Configure readiness and liveiness in the deployment.yaml file.   // these 2 property make sure to bring the older version of service down only if new version is deployed properly.
+
+
+
