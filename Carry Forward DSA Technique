@@ -1,0 +1,56 @@
+Carry Forward Technique:--
+
+        Whenever you have to keep a track of minIndex/maxIndex/minElement/maxElement then use the technique of carry forward.
+
+        What is carry forward technique:
+            keep a track of minIndex variable and wherever you get a better minIndex then update the minIndex and use it to find the output.
+
+
+
+Prefix sum technique:--
+        When the question have asked the ranges query or subarray based problem then use the prefix sum technique.
+      * We can create the prefix sum for an array as well as for a matrix(1st row PS then on row PS matrix, calculate the column PS).
+
+Contribution Technique:--
+        When iterating over the elements based on the problem/ques is itself expensive and giving TLE then
+Look for the contribution of every element to solve the problem.
+Example:
+    Ques: Find the sum of all possible sub-arrays sum. (Scalar question)
+    Ans: (i+1)*(n-i) // this gives the occurrence of an element in all possible sub-array.
+
+Integer and Long max possible value:
+    Integer: 10^9 = 1e9
+    Long: 10^18 = 1e18
+
+
+TC of Recursive Code = (Total function calls) * (TC of each function call)
+    Example: Fibonacci series
+        1. Recursive code: O(2^n)
+        2. Memoization code: O(n)
+
+Which sorting algorithm is best for large data set?
+    Merge sort or Quick sort --> Quick sort coz its quicker and scientist ran the merge and quick sort on multiple large data set to decide.
+                                 Hence its named as Quick sort.
+
+
+2 - pointers: 2-pointers can only be used where we are sure that search space can be reduced.
+          Example:
+                Sliding Window
+                Binary Search
+                Check palindrome
+                Reverse a string/Array
+                Merge two sorted arrays
+                Maximum water fill b/w any 2 walls
+
+
+Why LinkedList came, if we had already a Array?
+    1. LinkedList is more memory efficient than Array.
+    2. LinkedList is more flexible than Array.
+    3. LinkedList is more efficient than Array for insertion and deletion operations.
+         Insertion and deletion at k th position is very costly in array, if we have the huge data stored at every index like complex object.
+         Hence Linked List is more efficient than Array where you don't have to access the data in O(1) time.
+
+
+Infix and postfix:
+     Infix: Computer need more time to evaluate the expression, coz it need to take care of operator precedence and solve them first then lower precedence one.
+     Postfix/prefix: Computer need less time to evaluate the expression, coz for postfix/prefix expression, it doesn't need to take care of operator precedence.

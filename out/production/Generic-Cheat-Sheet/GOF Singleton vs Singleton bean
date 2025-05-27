@@ -1,0 +1,25 @@
+GOF Singleton Design Pattern:-
+              If a class in Singleton, then only one object will be created in JVM, or when we run our application in JVM, 1 obj will be created.
+
+Singleton bean scope:-
+            If we mark a singleton bean, then per ApplicationContext a bean will be created.
+
+For Example: Let's say, we have 2 xml file i.e. used to scan the package for bean creation.
+
+ApplicationContext appContext1 =  new ClassPathXMLApplicationContext("beans1.xml");
+Student stu1 = appContext1.getBean("student", Student.class);
+Student stu2 = appContext1.getBean("student", Student.class);
+//Both stu1 and stu2 will have same object
+
+ApplicationContext appContext2 =  new ClassPathXMLApplicationContext("beans2.xml");
+Student stu3 = appContext2.getBean("student", Student.class);
+Student stu4 = appContext2.getBean("student", Student.class);
+//Both stu3 and stu4 will have same object
+
+//But stu1 and stu3 will have different object, coz both bean is in the different application context.
+
+@Component
+@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+public class Student{
+
+}

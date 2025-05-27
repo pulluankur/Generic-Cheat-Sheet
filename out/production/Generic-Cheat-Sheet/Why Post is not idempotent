@@ -1,0 +1,11 @@
+Why post method is not idempotent?
+
+Creation of Resources: In RESTful APIs, POST is commonly used for creating new resources.
+Subsequent POST requests with the same data may create new resources each time, leading to different results.
+
+While it's a convention to use POST for non-idempotent operations, developers should be
+aware that it's the responsibility of the application to manage and handle idempotency if needed.
+
+Note:
+    1. In the context of HTTP methods, an idempotent method is one that produces the same result regardless of how many times it is executed.
+    2. The HTTP methods that are considered idempotent are GET, HEAD, PUT, PATCH and DELETE.

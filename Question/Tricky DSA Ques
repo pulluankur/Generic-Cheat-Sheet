@@ -1,0 +1,44 @@
+Ques 1:-- Given an array of 0's and 1's. Replace one of the o with 1 and find the max consecutive number of 1's?
+Ques 2:-- Given an array of 0's and 1's. Swap one of the o with 1 present in the array and find the max consecutive number of 1's?
+
+
+Ques 3:-- Find the sum of all possible sub-arrays sum. (Scalar question)
+    Ans: (i+1)*(n-i) * A[i] // (i+1)*(n-i): this gives the occurrence of an element in all possible sub-array.
+
+Find the sum of all possible sub-matrix's sum. (similar to the above approach, contribution technique)
+    Ans: (i+1)*(j+1) * (n-i)*(m-j) * A[i][j] // (i+1)*(j+1){top-left starting points} * (n-i)*(n-j){bottom-right total points}: this gives the occurrence of an element in all possible sub-matrix.
+
+Ques 4:-- Transpose a N*M rectangular matrix. (you need to create a matrix of M*N)
+
+Ques: 5:-- Count the triplet of element in the array. TC: O(N^2)
+            i<j<k && a[i]<a[j]<a[k]
+       Ans: Compute the left_smaller and right_greater of every element and multiple them.
+
+Ques 6:--Find the majority element in the array?(Do the negative counting)
+    Idea: If we remove any 2 distinct element, then at the end at least 1 majority element left.
+
+Ques 7:-- If there any question ask to perform any operation within the array(like: swap the element and same index have to represent two elements)
+ without using any extra space, then think of below math formula.
+        Ans:  Dividend = Divisor * Quotient + Remainder;
+
+
+Ques 8:-- Find the element/index of the nearest smaller element in the left/right side of an array.
+          Find the distance of the nearest smaller element in the left/right side of an array.
+          Find the element/index of the nearest greater element in the left/right side of an array.
+          Find the distance of the nearest greater element in the left/right side of an array.
+
+
+Ques 9:-- Generate Nth number using 1, 2 and 3
+    Idea: 1, 2, 3, 11, 12, 13, 21, 22, 23, 31, 32, 33, .....
+    Ans: Solve the problem using BFS/Level order traversal(Queue) approach.
+
+
+Amortized Time Complexity: (ex: ArrayList, HashMap, HashSet)
+    1. It is particularly useful for data structures like dynamic arrays, where occasional resizing can lead to high time complexity for individual operations.
+    2. The amortized time complexity is often expressed as O(1) for operations that are typically fast(like insert in ArrayList), even if some individual operations may take longer(if arraylist gets full, and recreates double the size of it).
+
+Ques 10:-- Boolean matrix
+    Idea: Given a matrix of 0's and 1's, if any cell is 1 then make the entire row and column as 1.
+    Ans: We will take care of the first row and first column separately using flag variables row_flag and col_flag, which will denote if there is a 1 present in the first row and first column respectively.
+         Use the first row and first column to mark the rows and columns that need to be set to 1. Then iterate through the matrix to set the values accordingly.
+

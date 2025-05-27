@@ -1,0 +1,5 @@
+Use POST for creating a new resource.
+Use PUT for updating an existing resource or creating a new one with a specific identifier.
+Use PATCH for applying partial updates to an existing resource.
+When designing RESTful APIs, it's essential to follow the principles of idempotence and use the appropriate HTTP methods based on the intended operation. 
+The choice between PUT and PATCH depends on whether you are updating the entire resource or just a part of it.

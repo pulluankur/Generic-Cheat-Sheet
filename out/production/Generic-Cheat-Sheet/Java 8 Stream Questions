@@ -24,20 +24,11 @@
 
         /*
 
---Note:--
-    1. You can iterate on HashSet using enhanced for loop.
-        Set<Integer> set = new HashSet<>():
-        for(Integer ele : set){
-            // do something
-        }
-    2. System.out.println(7+(-40%7)); // bug in the java for module operation. So, add deno. in the result for -ive numo.
-
-
 Question: Sort a map using stream
 
 ----Note:---
 1. mapToObj(e-> (char)e)  => mapToObj() is used to convert IntStream/CharStream/LongStream to Stream<T> ; T = Integer, Long, Character
-2. If Arrays.stream() applies to primitive array then it will return IntStream, LongStream, DoubleStream, but it didn't work for char
+2. If Arrays.stream() applies of primitive array then it will return IntStream, LongStream, DoubleStream, but it didn't work for char
                     and if applied on any class array(String[], Employee[]) then it will return Stream<String>, Stream<Employee>
 3. 1. int[] a= {1,2,3,4};
       IntStream stream1 = Arrays.stream(a);
@@ -228,7 +219,6 @@ Question: Sort a map using stream
         Map<String, Long> elementFreq = listOfStrings.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         Optional<Map.Entry<String, Long>> maxFreqEle = elementFreq.entrySet().stream().max(Comparator.comparing(Map.Entry::getValue));
         maxFreqEle.ifPresent(entry -> System.out.println(entry.getKey()));
-
 
 */
     

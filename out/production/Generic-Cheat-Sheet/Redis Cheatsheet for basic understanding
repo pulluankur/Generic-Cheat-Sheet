@@ -1,0 +1,52 @@
+*)No-sql datatypes are 4  types:-
+1. Key Value(Redis) 
+2. Document Based(Mongo)
+3. Wide-Column/Columnar(Cassandra)
+4. Graph Based(Neo4j)
+
+*)Redis Concepts:-
+	Run redis-server.exe
+	Run redis-cli.exe
+
+*)Command:- 
+	Monitor
+
+*)Redis Data Persistance
+	1. RDB
+	2. AOF
+	3. Hybrid
+
+*)Master Slave Arhitecture:-
+	Sentinal
+
+*)Transcational:-
+Commands
+	multi
+	exec
+	Watch
+
+*)Pub/Sub System:-
+	Publish <channelName> <data>
+	Subscribe <channelName>
+
+*)Redis Client:-
+	Jedis (have only basic feature)
+	Lettuce (have advance feature)
+	Redisson (have advance feature)
+
+*)To use Redis in a Spring Boot:-
+As a Cache:-
+	@EnableCache
+	@Cachable()
+	@CacheEvict()
+
+As a DataBase:-
+	Use RedisTemplate Methods like opsOfValue(), opsOfList(), opsOfSet(), opsOfHash()
+
+As a Pub/sub:-
+Create a channel at both end.
+At a publisher end:-
+	Override publish() of MessagePublisher class
+	and send via convertAndSend() of RedisTemplate.
+At a Subscriber End:-
+	Override onMessage() of MessageSubscriber class.

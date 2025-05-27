@@ -1,0 +1,43 @@
+1. Java will provide default constructor, if and only if you are not providing any constructor in the class.
+
+Java is Pass by value.
+
+Deep vs shallow copy
+    1. Shallow copy: only copies the reference of the object, not the actual object.
+    2. Deep copy: creates a new object and copies all the values from the original object to the new object.
+
+Type of GC's:---
+    Anyone GC can be used by Command Line Argument in Java.
+    1. Serial GC
+    2. Parallel GC (Java8 default GC)
+    3. Concurrent Mark Sweep (CMS) GC
+    5. G1 GC
+    6. Z GC
+
+How many ways to create a thread in Java?
+    1. By extending Thread class
+    2. By implementing Runnable interface
+    3. By using Executor framework (SingleThreadExecutor, FixedThreadPool, CachedThreadPool, ScheduledThreadPool)
+    4. By using CompletableFuture (We don’t need to use the ExecutorService explicitly. The CompletableFuture internally
+                                   uses ForkJoinPool to handle the task asynchronously. Thus, it makes our code a lot
+                                   cleaner.)
+    Executor Example:
+    ```java
+        ExecutorService threadpool = Executors.newCachedThreadPool(); //you don't need to create the thread pool's for completable future
+        Future<Long> futureTask = threadpool.submit(() -> factorial(number));
+        while (!futureTask.isDone()) {
+        System.out.println("FutureTask is not finished yet...");
+        }
+        long result = futureTask.get(); //Blocking Code
+    ```
+
+    5. By using CompletableFuture (Java 8 feature)
+    CompletableFuture Example:
+    ```java
+        CompletableFuture<Long> completableFuture = CompletableFuture.supplyAsync(() ->
+        factorial(number));
+
+        long result = completableFuture.get(); //Blocking Code
+    ```
+
+

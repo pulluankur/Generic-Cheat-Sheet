@@ -1,0 +1,25 @@
+Let's say we have 2 transaction (T1 & T2)
+
+Dirty read: If T1 updates a data but i.e. not committed and later it rollback And T2 perform the read operation twice before the update by T1 and after the update by T1 and get the different data.
+
+Non-repeatable Read: If T1 updates a data and committed And T2 perform the read operation twice before the update by T1 and after the update by T1 and get the different data.
+                     And in the same transaction getting the different data, and that should not be happen.
+
+Repeatable Read: If T1 updates a data and later it may be committed/rollback And T2 perform the read operation twice before the update by T1 and after the update by T1 and getting the same data.
+                And this is the right approach.
+
+Phantom Read: the system guarantees not only that different transactions will not interfere with each other's reads
+              but also that no other transactions can insert, update, or delete rows that would affect the outcome of the current transaction.
+
+Transaction Isolation level:
+1. READ_UNCOMMITTED
+2. READ_COMMITTED
+3. REPEATABLE_READ
+4. SERIALIZABLE -> prevents dirty read, non-repeatable read and also prevents phantom reads.
+
+Transaction Propagation level:
+1. REQUIRED
+2. REQUIRED_NEW
+3. NEVER
+4. SUPPORTED
+5. NOT_SUPPORTED
