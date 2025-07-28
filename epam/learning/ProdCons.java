@@ -12,15 +12,17 @@ public class ProdCons {
 
     public synchronized void produce(int data) throws InterruptedException {
 
-        while(buffer.size()== MAX_SIZE)
+        while(buffer.size() == MAX_SIZE) {
             wait();
+        }
         buffer.add(data);
         notify();
     }
 
     public synchronized void consume() throws InterruptedException {
-        while(buffer.size()==0)
+        while(buffer.isEmpty()) {
             wait();
+        }
         Integer data = buffer.poll();
         System.out.println("data:"+data);
         notify();
@@ -35,8 +37,6 @@ public class ProdCons {
         ExecutorService executorService = Executors.newFixedThreadPool(2);
         executorService.submit(new Producer(new ProdCons()));
         executorService.submit(new Consumer(new ProdCons()));
-
-
 
     }
 }

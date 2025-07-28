@@ -1,0 +1,28 @@
+Answer: 📌 Static method overriding is not possible in Java.
+
+📌 What Happens Instead?
+If you define a static method in a subclass with the same name and parameters as in the parent class, you're not overriding — you're hiding the parent’s method.
+
+This is called method hiding, not overriding.
+
+✅ Example:
+
+class Parent {
+    static void display() {
+        System.out.println("Parent static method");
+    }
+}
+
+class Child extends Parent {
+    static void display() {
+        System.out.println("Child static method");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Parent p = new Child();
+        p.display();  // Output: Parent static method (NOT Child)
+    }
+}
+➡️ Even though the object is Child, the method called is Parent.display() because static methods are resolved at compile-time, based on the reference type (Parent), not the object (Child).

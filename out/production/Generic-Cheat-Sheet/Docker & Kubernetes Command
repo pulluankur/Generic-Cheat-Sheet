@@ -9,7 +9,7 @@ docker run -p {host port}:{container port} -d {imageName:tag}    //-d = detached
 docker container run -p {host port}:{container port} -d {imageName:tag}
 docker run -p {host port}:{container port} -d  --restart=Always {imageName:tag} // --restart=Always/no; Always mode is used to restart the containter everytime when docker starts, 
 																					  this is useful for DB service
-docker run -p {host port}:{container port} -d -m {memory usage specify} --cup-quota {cpu usage  specify {imageName:tag}
+docker run -p {host port}:{container port} -d -m {memory usage specify} --cup-quota {cpu usage  specify} {imageName:tag}
 docker container logs -f {imageId}
 																					  
 docker container stop {imageId/imageName} // stop gracefully

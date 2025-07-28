@@ -21,10 +21,11 @@ public class ReentrantLockProducerConsumer {
     public void addData(Integer data){ //producer
         lock.lock();
         try {
-            while(buffer.size() == SIZE)
-                prodCond.await();
-            buffer.offer(data);
-            consCond.signal();
+            while(buffer.size() == SIZE) {
+                prodCond.await();  //wait()
+            }
+            buffer.add(data);
+            consCond.signal(); //notify()
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } finally {
@@ -35,9 +36,11 @@ public class ReentrantLockProducerConsumer {
     public Integer getVal(){  //consumer
         lock.lock();
         try {
-            while(buffer.isEmpty())
+            while(buffer.isEmpty()){
                 consCond.await();
+            }
             Integer data = buffer.poll();
+            System.out.println("data consumed:"+data);
             prodCond.signal();
             return data;
         } catch (InterruptedException e) {

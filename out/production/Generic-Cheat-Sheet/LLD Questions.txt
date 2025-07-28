@@ -8,4 +8,8 @@
 8. Splitwise
 9. Cache
 
+Dependency Inversion: Tells that, no 2 concrete class directly depends on each other.
+
+
+
 
